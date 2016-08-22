@@ -102,7 +102,7 @@ extension Moment {
 
       let bundleName = "MomentFromNow.bundle"
       let path = NSURL(fileURLWithPath:resourcePath).URLByAppendingPathComponent(bundleName)
-      guard let bundle = NSBundle(URL: path) else {
+      guard let bundle = NSBundle(URL: path!) else {
         return ""
       }
 
