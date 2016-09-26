@@ -323,7 +323,9 @@ class MomentTests: XCTestCase {
         XCTAssertEqual(tag, "Sonntag", "Ach so!")
         XCTAssertEqual(monat, "März", "Ach so!")
     }
+}
 
+extension MomentTests {
     func testStartOfYear() {
         let obj = moment([2015, 10, 19, 20, 45, 34])!.startOf("y")
         XCTAssertEqual(obj.year, 2015, "The year should match")
@@ -433,33 +435,32 @@ class MomentTests: XCTestCase {
         XCTAssertEqual(jst.epoch(), gmt.epoch(), "The JST epoch should match GMT epoch")
     }
 
-	func testPublicDate() {
-		let date = Date()
-		let now = moment(date)
-		XCTAssertEqual(now.date, date, "The moment's date should be publicly readable")
-    let expectedString = ["The moment's timeZone should be publicly readable",
-                          "and default to the current timezone"].joined(separator: " ")
-		XCTAssertEqual(now.timeZone, TimeZone.current, expectedString)
-	}
+    func testPublicDate() {
+        let date = Date()
+        let now = moment(date)
+        XCTAssertEqual(now.date, date, "The moment's date should be publicly readable")
+        let expectedString = ["The moment's timeZone should be publicly readable",
+                              "and default to the current timezone"].joined(separator: " ")
+        XCTAssertEqual(now.timeZone, TimeZone.current, expectedString)
+    }
 
-	func testPublicTimeZone() {
-		let date = Date()
-		let now = moment(date)
-    let expectedString = ["The moment's timeZone should be publicly readable",
-                          "and default to the current timezone"].joined(separator: " ")
-		XCTAssertEqual(now.timeZone, TimeZone.current, expectedString)
-	}
+    func testPublicTimeZone() {
+        let date = Date()
+        let now = moment(date)
+        let expectedString = ["The moment's timeZone should be publicly readable",
+                              "and default to the current timezone"].joined(separator: " ")
+        XCTAssertEqual(now.timeZone, TimeZone.current, expectedString)
+    }
 
-	func testPublicLocale() {
-		let date = Date()
-		let now = moment(date)
-    let expectedString = ["The moment's locale should be publicly readable",
-                          "and default to the current locale"].joined(separator: " ")
-        
+    func testPublicLocale() {
+        let date = Date()
+        let now = moment(date)
+        let expectedString = ["The moment's locale should be publicly readable",
+                              "and default to the current locale"].joined(separator: " ")
         // Using autoupdatingCurrent here, because
         // https://github.com/lionheart/openradar-mirror/issues/15493
-		XCTAssertEqual(now.locale, Locale.autoupdatingCurrent, expectedString)
-	}
+        XCTAssertEqual(now.locale, Locale.autoupdatingCurrent, expectedString)
+    }
 
     func testAddingInt() {
         // This is to verify that issue #48 is corrected
